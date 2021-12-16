@@ -1,14 +1,15 @@
 import { Fragment } from 'react';
 import Layout from './components/UI/Layout';
-import ProductsTable from './components/Tables/ProductsTable';
+import { BrowserRouter } from 'react-router-dom';
+import RouterLinks from './components/Router/RouterLinks';
 
 function App() {
   return (
-    <Fragment>
+    <BrowserRouter>
       <Layout>
-        <ProductsTable />
+        <RouterLinks />
       </Layout>
-    </Fragment>
+    </BrowserRouter>
   );
 }
 

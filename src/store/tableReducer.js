@@ -9,4 +9,4 @@ const tableSlice = createSlice({
 });
 
 export const tableActions = tableSlice.actions;
-export default tableActions.reducer;
+export default tableSlice.reducer;
