@@ -1,0 +1,13 @@
+@import '../../utilities/colors.module.scss';
+
+.ActionBar {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ActionBar button {
+  margin-left: 3%;
+}

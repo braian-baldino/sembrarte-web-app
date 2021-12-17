@@ -120,7 +120,13 @@ const ProductsTable = props => {
   return (
     <ThemeProvider theme={bodyTheme}>
       <Box sx={{ width: '100%' }}>
-        <Paper sx={{ width: '100%', mb: 2 }}>
+        <Paper
+          sx={{
+            width: '100%',
+            mb: 2,
+            boxShadow: '0px 3px 10px rgba(0, 0, 0, 0.452)',
+          }}
+        >
           <CustomTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
@@ -182,7 +188,6 @@ const ProductsTable = props => {
                   })}
                 {emptyRows > 0 && (
                   <TableRow
-                    hover={{ backgroundColor: 'red' }}
                     style={{
                       height: 53 * emptyRows,
                     }}
