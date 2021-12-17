@@ -1,14 +1,15 @@
+import { Fragment } from 'react';
 import styles from './Logo.module.css';
 
 const Logo = () => {
   return (
-    <div>
+    <Fragment>
       <img
         src={require('../../assets/logo.png')}
         alt='logo'
         className={styles.Logo}
       />
-    </div>
+    </Fragment>
   );
 };
 

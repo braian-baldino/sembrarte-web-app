@@ -40,7 +40,7 @@ const productsSlice = createSlice({
     },
     deleteProduct(state, action) {
       const index = state.items.findIndex(
-        item => item.id === action.payload.id
+        item => item.id === action.payload.products.id
       );
       state.items.splice(index, 1);
       state.totalItems = state.items.length;

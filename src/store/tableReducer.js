@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const tablState = { isAuthenticated: false };
+const tablState = { filteredProducts: [] };
 
 const tableSlice = createSlice({
   name: 'table',

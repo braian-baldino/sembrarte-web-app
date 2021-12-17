@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
+import ProductsFilterBar from './Tables/ProductsFilterBar';
 import ProductsTable from './Tables/ProductsTable';
 
 const ProductsWrapper = () => {
@@ -7,6 +8,7 @@ const ProductsWrapper = () => {
 
   return (
     <Fragment>
+      <ProductsFilterBar />
       <ProductsTable products={products} />
     </Fragment>
   );
