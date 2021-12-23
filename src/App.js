@@ -3,6 +3,7 @@ import Layout from './components/UI/Layout';
 import { BrowserRouter } from 'react-router-dom';
 import RouterLinks from './components/Router/RouterLinks';
 import ProductForm from './components/Forms/ProductForm';
+import CalculatePriceForm from './components/Forms/CalculatePriceForm';
 
 function App() {
   const showProductForm = useSelector(state => state.ui.showProductForm);
@@ -13,7 +14,7 @@ function App() {
       <Layout>
         <RouterLinks />
         {showProductForm && <ProductForm />}
-        {showCalculateForm && <div>Formulario Aplicar Margen</div>}
+        {showCalculateForm && <CalculatePriceForm />}
       </Layout>
     </BrowserRouter>
   );

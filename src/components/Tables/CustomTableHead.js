@@ -56,6 +56,12 @@ const headCells = [
     disablePadding: false,
     label: 'Costo',
   },
+  {
+    id: 'actions',
+    numeric: false,
+    disablePadding: false,
+    label: '',
+  },
 ];
 
 const CustomTableHead = props => {
@@ -88,6 +94,10 @@ const CustomTableHead = props => {
           </TableCell>
           {headCells.map(headCell => (
             <TableCell
+              sx={{
+                color: colors.primary,
+                fontWeight: 'bold',
+              }}
               key={headCell.id}
               align={'center'}
               padding={headCell.disablePadding ? 'none' : 'normal'}

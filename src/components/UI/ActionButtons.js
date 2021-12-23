@@ -43,7 +43,7 @@ const ActionButtons = () => {
       <div className={classes.ActionBar}>
         <Fab
           {...fabConfig}
-          ariaLabel='Agregar producto'
+          aria-label='Agregar producto'
           onClick={openAddFormHandler}
         >
           <AddCircleOutlineIcon {...iconConfig} />

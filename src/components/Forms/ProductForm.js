@@ -6,17 +6,15 @@ import Modal from '../UI/Modal';
 import TextField from '@mui/material/TextField';
 import classes from './ProductForm.module.css';
 import colors from '../../utilities/colors.module.scss';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
-import ContainerBox from '../UI/ContainerBox';
+
 import ChipBadge from '../UI/ChipBadge';
+import OutlinedContainer from '../UI/OutlinedContainer';
+import FormButtons from './FormButtons';
 
 const theme = createTheme({
   palette: {
-    primary: { main: colors.primary },
-    secondary: { main: colors.secondary },
+    primary: { main: colors.secondary },
+    secondary: { main: colors.primary },
   },
 });
 
@@ -29,8 +27,8 @@ const ProductForm = props => {
 
   return (
     <Modal onClose={onCloseHandler}>
-      <ContainerBox width={'100%'} height={'100%'}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <OutlinedContainer border={'2px'} padding={'14px'}>
           <form className={classes.Form}>
             <div
               style={{
@@ -68,17 +66,10 @@ const ProductForm = props => {
             </div>
           </form>
           <div className={classes.FormButtons}>
-            <Stack direction='row' spacing={2}>
-              <Button color='primary' variant='contained'>
-                <CheckIcon />
-              </Button>
-              <Button color='primary' variant='contained'>
-                <CloseIcon />
-              </Button>
-            </Stack>
+            <FormButtons cancelHandler={onCloseHandler} />
           </div>
-        </ThemeProvider>
-      </ContainerBox>
+        </OutlinedContainer>
+      </ThemeProvider>
     </Modal>
   );
 };
