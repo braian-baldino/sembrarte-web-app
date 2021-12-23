@@ -12,6 +12,7 @@ import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import colors from '../../utilities/colors.module.scss';
+import ItemTableButtons from './ItemTableButtons';
 
 const bodyTheme = createTheme({
   palette: { primary: { main: colors.primary, secondary: colors.secondary } },
@@ -154,7 +155,6 @@ const ProductsTable = props => {
                     return (
                       <TableRow
                         hover
-                        onClick={event => handleClick(event, row['id'])}
                         role='checkbox'
                         aria-checked={isItemSelected}
                         tabIndex={-1}
@@ -164,6 +164,7 @@ const ProductsTable = props => {
                         <TableCell padding='checkbox'>
                           <Checkbox
                             style={{ color: colors.secondary }}
+                            onClick={event => handleClick(event, row['id'])}
                             checked={isItemSelected}
                             inputProps={{
                               'aria-labelledby': labelId,
@@ -183,6 +184,9 @@ const ProductsTable = props => {
                         <TableCell align='center'>{row.descripcion}</TableCell>
                         <TableCell align='center'>{row.precio}</TableCell>
                         <TableCell align='center'>{row.costo}</TableCell>
+                        <TableCell align='center'>
+                          <ItemTableButtons />
+                        </TableCell>
                       </TableRow>
                     );
                   })}
@@ -199,6 +203,7 @@ const ProductsTable = props => {
             </Table>
           </TableContainer>
           <TablePagination
+            sx={{ color: colors.primary }}
             labelRowsPerPage='Filas por página:'
             rowsPerPageOptions={[10, 25, 50]}
             component='div'

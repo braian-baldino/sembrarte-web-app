@@ -11,12 +11,14 @@ const uiSlice = createSlice({
   initialState: uiState,
   reducers: {
     onShowProductForm: state => {
+      state.showCalculateForm = false;
       state.showProductForm = true;
     },
     onCloseProductForm: state => {
       state.showProductForm = false;
     },
     onShowCalculateForm: state => {
+      state.showProductForm = false;
       state.showCalculateForm = true;
     },
     onCloseCalculateForm: state => {
