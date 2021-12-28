@@ -41,8 +41,8 @@ const tableSlice = createSlice({
               .toLowerCase()
               .indexOf(filters.nombre.toLowerCase()) ||
             product.descripcion.indexOf(filters.descripcion) ||
-            product.precio == filters.precio ||
-            product.costo == filters.costo
+            product.precio === filters.precio ||
+            product.costo === filters.costo
           );
         });
       }
