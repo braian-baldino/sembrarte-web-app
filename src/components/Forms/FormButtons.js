@@ -10,11 +10,12 @@ const theme = createTheme({
   palette: {
     primary: { main: colors.primary },
     secondary: { main: colors.secondary },
+    tertiary: { main: colors.error },
   },
 });
 
 const FormButtons = props => {
-  const { color, variant, acceptHandler, cancelHandler } = props;
+  const { color, variant, acceptHandler, cancelHandler, disabled } = props;
   return (
     <ThemeProvider theme={theme}>
       <Stack direction='row' spacing={2}>
@@ -23,11 +24,12 @@ const FormButtons = props => {
           variant={variant ?? 'contained'}
           style={{ color: 'white' }}
           onClick={acceptHandler}
+          disabled={disabled ?? false}
         >
           <CheckIcon />
         </Button>
         <Button
-          color={color ?? 'primary'}
+          color='tertiary'
           style={{ color: 'white' }}
           variant={variant ?? 'contained'}
           onClick={cancelHandler}
