@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TableHead from '@mui/material/TableHead';
 import TableSortLabel from '@mui/material/TableSortLabel';
@@ -77,6 +78,8 @@ const CustomTableHead = props => {
     onRequestSort(event, property);
   };
 
+  const showCosto = useSelector(state => state.ui.toggleCosto);
+
   return (
     <ThemeProvider theme={headerTheme}>
       <TableHead>
@@ -92,33 +95,39 @@ const CustomTableHead = props => {
               }}
             />
           </TableCell>
-          {headCells.map(headCell => (
-            <TableCell
-              sx={{
-                color: colors.primary,
-                fontWeight: 'bold',
-              }}
-              key={headCell.id}
-              align={'center'}
-              padding={headCell.disablePadding ? 'none' : 'normal'}
-              sortDirection={orderBy === headCell.id ? order : false}
-            >
-              <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : 'asc'}
-                onClick={createSortHandler(headCell.id)}
-              >
-                {headCell.label}
-                {orderBy === headCell.id ? (
-                  <Box component='span' sx={visuallyHidden}>
-                    {order === 'desc'
-                      ? 'sorted descending'
-                      : 'sorted ascending'}
-                  </Box>
-                ) : null}
-              </TableSortLabel>
-            </TableCell>
-          ))}
+          {headCells.map(headCell => {
+            if (headCell.id === 'costo' && !showCosto) {
+              return null;
+            } else {
+              return (
+                <TableCell
+                  sx={{
+                    color: colors.primary,
+                    fontWeight: 'bold',
+                  }}
+                  key={headCell.id}
+                  align={'center'}
+                  padding={headCell.disablePadding ? 'none' : 'normal'}
+                  sortDirection={orderBy === headCell.id ? order : false}
+                >
+                  <TableSortLabel
+                    active={orderBy === headCell.id}
+                    direction={orderBy === headCell.id ? order : 'asc'}
+                    onClick={createSortHandler(headCell.id)}
+                  >
+                    {headCell.label}
+                    {orderBy === headCell.id ? (
+                      <Box component='span' sx={visuallyHidden}>
+                        {order === 'desc'
+                          ? 'sorted descending'
+                          : 'sorted ascending'}
+                      </Box>
+                    ) : null}
+                  </TableSortLabel>
+                </TableCell>
+              );
+            }
+          })}
         </TableRow>
       </TableHead>
     </ThemeProvider>

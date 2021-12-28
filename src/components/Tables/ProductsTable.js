@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CustomTableHead from './CustomTableHead';
 import CustomTableToolbar from './CustomTableToolbar';
@@ -65,6 +66,8 @@ const ProductsTable = props => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const showCosto = useSelector(state => state.ui.toggleCosto);
 
   const rows = props.products ?? [];
 
@@ -182,8 +185,10 @@ const ProductsTable = props => {
                         </TableCell>
                         <TableCell align='center'>{row.nombre}</TableCell>
                         <TableCell align='center'>{row.descripcion}</TableCell>
-                        <TableCell align='center'>{row.precio}</TableCell>
-                        <TableCell align='center'>{row.costo}</TableCell>
+                        <TableCell align='center'>${row.precio}</TableCell>
+                        {showCosto && (
+                          <TableCell align='center'>${row.costo}</TableCell>
+                        )}
                         <TableCell align='center'>
                           <ItemTableButtons />
                         </TableCell>

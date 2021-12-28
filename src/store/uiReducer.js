@@ -4,6 +4,7 @@ const uiState = {
   showProductForm: false,
   showCalculateForm: false,
   showConfirmationForm: false,
+  toggleCosto: true,
 };
 
 const uiSlice = createSlice({
@@ -23,6 +24,9 @@ const uiSlice = createSlice({
     },
     onCloseCalculateForm: state => {
       state.showCalculateForm = false;
+    },
+    onToggleCosto: state => {
+      state.toggleCosto = !state.toggleCosto;
     },
   },
 });
