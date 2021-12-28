@@ -10,9 +10,9 @@ const ProductsWrapper = () => {
   const filteredProducts = useSelector(state => state.table.filteredProducts);
 
   useEffect(() => {
-    dispatch(tableActions.setFilteredProducts({ products }));
+    dispatch(tableActions.setFilteredProducts({ products: products }));
     console.log('ProductsWrapper: useEffect');
-  }, [products]);
+  }, [products, dispatch]);
 
   return (
     <Fragment>
