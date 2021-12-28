@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
@@ -25,7 +24,6 @@ const iconConfig = {
 };
 
 const ItemTableButtons = () => {
-  const dispatch = useDispatch();
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.Buttons}>
