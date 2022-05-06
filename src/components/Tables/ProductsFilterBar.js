@@ -22,7 +22,6 @@ const commonConfig = {
 
 const ProductsFilterBar = () => {
   const dispatch = useDispatch();
-  const products = useSelector(state => state.product.items);
   const viewCosto = useSelector(state => state.ui.toggleCosto);
 
   const codigoRef = useRef(null);
@@ -32,16 +31,22 @@ const ProductsFilterBar = () => {
   const costoRef = useRef(null);
 
   const filterHandler = () => {
-    const filters = {
-      codigo: codigoRef.current.value,
-      nombre: nombreRef.current.value,
-      descripcion: descrpcionRef.current.value,
-      precio: precioRef.current.value,
-      costo: costoRef.current.value,
-    };
+    const codigo = codigoRef.current.value;
+    const nombre = nombreRef.current.value;
+    const descripcion = descrpcionRef.current.value;
+    const precio = precioRef.current.value;
+    const costo = costoRef.current.value;
 
     dispatch(
-      tableActions.filterProducts({ products: products, filters: filters })
+      tableActions.filterProducts({
+        filters: {
+          codigo: codigo,
+          nombre: nombre,
+          descripcion: descripcion,
+          precio: precio,
+          costo: costo,
+        },
+      })
     );
   };
 

@@ -1,51 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const tablState = { filteredProducts: [], filters: [] };
+const tablState = {
+  filteredProducts: [],
+  products: [],
+  filters: {
+    codigo: '',
+    nombre: '',
+    descripcion: '',
+    precio: '',
+    costo: '',
+  },
+};
 
 const tableSlice = createSlice({
   name: 'table',
   initialState: tablState,
   reducers: {
     setFilteredProducts: (state, action) => {
+      state.products = action.payload.products;
       state.filteredProducts = action.payload.products;
     },
-    filterProducts(state, action) {
-      const products = action.payload.products;
-      const filters = action.payload.filters;
+    filterProducts: (state, action) => {
+      state.filters = action.payload.filters;
+
       if (
-        filters.codigo === '' &&
-        filters.nombre === '' &&
-        filters.descripcion === '' &&
-        filters.precio === '' &&
-        filters.costo === ''
+        state.filters.codigo === '' &&
+        state.filters.nombre === '' &&
+        state.filters.descripcion === '' &&
+        state.filters.precio === '' &&
+        state.filters.costo === ''
       ) {
-        state.filteredProducts = products;
-      } else {
-        // state.filteredProducts = products.filter(product => {
-        //   return (
-        //     filters.includes(product.codigo.trim().toLowerCase()) ||
-        //     filters.includes(product.nombre.toLowerCase()) ||
-        //     filters.includes(product.descripcion.toLowerCase()) ||
-        //     filters.includes(product.precio) ||
-        //     filters.includes(product.costo)
-        //   );
-        // });
-        state.filteredProducts = products.filter(product => {
-          console.log(filters);
-          return (
-            product.codigo
-              .trim()
-              .toLowerCase()
-              .indexOf(filters.codigo.trim().toLowerCase()) ||
-            product.nombre
-              .toLowerCase()
-              .indexOf(filters.nombre.toLowerCase()) ||
-            product.descripcion.indexOf(filters.descripcion) ||
-            product.precio === filters.precio ||
-            product.costo === filters.costo
-          );
+        state.filteredProducts = state.products;
+        return;
+      }
+
+      let results = state.products.filter(product => {
+        return (
+          product.codigo.toLowerCase().trim().includes(state.filters.codigo) &&
+          product.nombre.toLowerCase().trim().includes(state.filters.nombre) &&
+          product.descripcion
+            .toLowerCase()
+            .trim()
+            .includes(state.filters.descripcion)
+        );
+      });
+
+      if (state.filters.precio !== '') {
+        results = results.filter(product => {
+          return parseInt(product.precio) === parseInt(state.filters.precio);
         });
       }
+      if (state.filters.costo !== '') {
+        results = results.filter(product => {
+          return parseInt(product.costo) === parseInt(state.filters.costo);
+        });
+      }
+
+      state.filteredProducts = results != [] ? results : state.products;
     },
   },
 });
